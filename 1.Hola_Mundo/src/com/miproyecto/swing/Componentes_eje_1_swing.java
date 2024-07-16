@@ -4,7 +4,6 @@ package com.miproyecto.swing;
 //lib para los componentes
 import javax.swing.*;
 //realacionado a tamaños y posiciones de los componenetes
-import java.awt.*;
 import java.awt.BorderLayout;
 
 //Eventos de Botones
@@ -22,7 +21,7 @@ public class Componentes_eje_1_swing {
 		final JFrame frame = new JFrame("Ventana 1");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+//-----------------------------------------Barra de Carga y Boton---------------------------------------		
 		//----Barra de progreso
 		JPanel Panel_1 = new JPanel();
 		JProgressBar BarraProgreso = new JProgressBar(0,100);
@@ -52,11 +51,23 @@ public class Componentes_eje_1_swing {
 			
 		});		
 		
+//-----------------------------------------Radio Button---------------------------------------	
+		
+		JPanel Panel_3 = new JPanel();
+		JRadioButton RBtn_opcion1= new JRadioButton();
+		JRadioButton RBtn_opcion2= new JRadioButton();
+		ButtonGroup Grupo = new ButtonGroup();
+		Grupo.add(RBtn_opcion1);
+		Grupo.add(RBtn_opcion2);
+		
+		Panel_3.add(RBtn_opcion1);
+		Panel_3.add(RBtn_opcion2);
 		
 		
 		//----añadiendo los componentes al frame (ventana principal)
 		frame.add(Panel_1, BorderLayout.NORTH);
 		frame.add(Panel_2, BorderLayout.CENTER);
+		frame.add(Panel_3, BorderLayout.WEST);
 		
 		//----apartado : para que la ventana se vizualice o exista
 		frame.setSize(800,300);
