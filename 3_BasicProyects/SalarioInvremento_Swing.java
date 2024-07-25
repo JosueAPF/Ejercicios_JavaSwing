@@ -5,6 +5,24 @@ import javax.swing.border.Border;
 //eventos para los botones
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.function.Consumer;
+
+class Bonificacion{
+   private double Total;
+   private double Bonificacion;
+   
+   public Bonificacion(){
+      Total = 0.0;
+      Bonificacion = 0.0;
+   }
+   public double getBonificacion(){
+      return Bonificacion * 0.10;
+   }
+   public double getTotal(int sueldo){
+      return Total = sueldo+(sueldo*Bonificacion);
+   }
+
+}
 
 
 // Clase para la ventana principal
@@ -42,8 +60,6 @@ class VentanaPrincipal {
        TextoUser.setPreferredSize(new Dimension(200, 30));//dimencion para la caja de texto
        textArea.setLineWrap(true); // Habilitar ajuste automático de líneas
        textArea.setWrapStyleWord(true); // Ajustar palabras completas
-
-   
    }
    
    //añade los componenetes a un JPanel para luego ser añadido al frame Principal
@@ -55,10 +71,34 @@ class VentanaPrincipal {
          SubPanel.add(component);
          panelPrincipal.add(SubPanel);
       }
-      
+      //llamar a el metodo My_Btn y cargarle el Btn1 y la funcion Calculo
+      My_Btn(Btn1, (ActionEvent e) -> Calculo());  
+          
+      //colocarle a el panel  principal el contenedor
       frame.add(panelPrincipal);
       DimencionesComponents();
       
+   }
+   //evento para los botones espera una variable boton y una funcion
+   public void My_Btn(JButton nombre, Consumer<ActionEvent> funcion) {
+      nombre.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                funcion.accept(e); // Ejecutar la función pasada como parámetro
+         }
+      });
+    }
+   //metodo calculo boton
+   public void Calculo(){
+       try {
+             String textoIngresado = TextoUser.getText();
+             int numeroEntero = Integer.parseInt(textoIngresado);
+             //System.out.println(numeroEntero);
+             //convierte ese int a string para que el textArea lo lea
+             textArea.setText(String.valueOf(numeroEntero)); // agreaga el texto al textarea
+             JOptionPane.showMessageDialog(null, "Número ingresado: " + numeroEntero);
+       } catch (NumberFormatException ex) {
+              JOptionPane.showMessageDialog(null, "Entrada no válida.");
+       }
    }
     // Método para configurar y mostrar la ventana
     public void mostrarVentana() {
